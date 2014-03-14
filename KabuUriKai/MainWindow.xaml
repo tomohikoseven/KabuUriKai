@@ -1,0 +1,13 @@
+﻿<Window x:Class="KabuUriKai.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <StackPanel Height="auto" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="auto" >
+            <Button Content="Button" HorizontalAlignment="Left" Name="BtnExe" VerticalAlignment="Top" Width="auto" />
+            <DataGrid Name="KabuList">
+            </DataGrid>
+        </StackPanel>
+        
+    </Grid>
+</Window>
