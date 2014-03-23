@@ -5,9 +5,8 @@ using System.Text;
 
 namespace KabuUriKai
 {
-    public class CalcUriKai
+    public class CalcUriKai : URIData
     {
-        private static readonly string saveFolderName = @"C:\Users\tomohiko\Documents\01_kabu\tool\data";
         private static readonly string calcFolderName = @"C:\Users\tomohiko\Documents\01_kabu\tool\calc";
 
 

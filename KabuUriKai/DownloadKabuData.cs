@@ -1,19 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Net;
 using System.IO;
 
 namespace KabuUriKai
 {
-    public class DownloadKabuData : WebClient
+    public class DownloadKabuData : URIData
     {
-        // ダウンロードファイルの保存先
-        private static readonly string saveFolderName = @"C:\Users\tomohiko\Documents\01_kabu\tool\data";
-        private static string targetUri = @"http://k-db.com/site/download.aspx?p=all&download=csv&date=";
-        private static string FORMAT = "yyyy-MM-dd";
-
 
         public DownloadKabuData() : base()
         {
@@ -44,18 +38,23 @@ namespace KabuUriKai
             torihikibiList.ForEach(t => { download(t); });
         }
 
+        /// <summary>
+        /// Dataフォルダ配下のファイルをすべて削除する
+        /// </summary>
         private void fileDeleteAll()
         {
-            if (Directory.Exists(saveFolderName))
+            string[] files = null;
+            files = getAllFilePathOnDataFolder();
+
+            if (files != null && files.Count() != 0)
             {
-                string[] files = Directory.GetFiles(saveFolderName, "*", SearchOption.AllDirectories);
                 foreach (var file in files)
                 {
                     File.Delete(file);
                 }
-             
             }
         }
+
 
         /// <summary>
         /// 指定された日付の株リストを取得する
@@ -69,6 +68,7 @@ namespace KabuUriKai
             var targetDate = date.ToString(FORMAT);
             var saveFileName = saveFolderName + @"\" + targetDate + ".dat";
             var uri = new Uri(targetUri + @"/" + targetDate);
+            var client = new WebClient();
 
             // フォルダがなければ、作成する。
             if (!Directory.Exists(saveFolderName))
@@ -79,7 +79,7 @@ namespace KabuUriKai
             try
             {
                 // ダウンロードする
-                DownloadFile(uri, saveFileName);
+                client.DownloadFile(uri, saveFileName);
             }
             catch (WebException we)
             {

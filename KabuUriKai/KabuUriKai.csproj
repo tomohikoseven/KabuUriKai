@@ -58,6 +58,7 @@
     <Reference Include="log4net">
       <HintPath>..\log4net-1.2.13\bin\net-cp\4.0\release\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -77,6 +78,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="JudgeUrikai.cs" />
+    <Compile Include="URIData.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,9 +89,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CalcUriKai.cs" />
-    <Compile Include="DownloadKabuData.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="CommonData.cs" />
+    <Compile Include="DownloadKabuData.cs" />
+    <Compile Include="JudgeUrikaiData.cs" />
+    <Compile Include="KabuData.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
