@@ -22,5 +22,6 @@ namespace KabuUriKai
             this.Meigara = Meigara;
             this.Owarine = Owarine;
         }
+
     }
 }

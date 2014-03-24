@@ -35,5 +35,6 @@ namespace KabuUriKai
             this.Urikai = Urikai;
             this.Avg = Avg;
         }
+
     }
 }

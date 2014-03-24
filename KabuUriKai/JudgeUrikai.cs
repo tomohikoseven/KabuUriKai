@@ -106,6 +106,7 @@ namespace KabuUriKai
                 List<double> list = query.ToList();
                 judgeUrikaiData.Avg = list.Average();
 
+
                 // 売買判定をする(true:買い、false:売り)
                 judgeUrikaiData.Urikai =
                     judgeUrikaiData.Avg > judgeUrikaiData.Owarine ? true : false ;
@@ -137,5 +138,6 @@ namespace KabuUriKai
 
             throw new NotImplementedException();
         }
+
     }
 }
