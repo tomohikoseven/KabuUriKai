@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.IO;
+using KabuUriKai.Common;
+using KabuUriKai.Log;
 
-namespace KabuUriKai
+namespace KabuUriKai.Download
 {
     public class DownloadKabuData : URIData
     {

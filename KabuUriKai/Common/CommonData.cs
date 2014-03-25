@@ -1,5 +1,5 @@
 ﻿
-namespace KabuUriKai
+namespace KabuUriKai.Common
 {
     public class CommonData : URIData
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Reflection;
 using log4net;
 
-namespace KabuUriKai
+namespace KabuUriKai.Log
 {
     public class MyLog
     {
