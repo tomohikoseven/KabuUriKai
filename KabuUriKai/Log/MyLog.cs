@@ -5,6 +5,7 @@ using System.Text;
 using System.Reflection;
 using log4net;
 using System.IO;
+using System.Diagnostics;
 
 namespace KabuUriKai.Log
 {
@@ -23,6 +24,7 @@ namespace KabuUriKai.Log
             }
         }
 
+        [Conditional("DEBUG")]
         public static void Debug(string format, params object[] args)
         {
             var message = string.Format(format, args);

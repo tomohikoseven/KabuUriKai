@@ -7,7 +7,7 @@ using System.IO;
 
 namespace KabuUriKai.Judge
 {
-    public class JudgeUrikai
+    public class JudgeUrikai : URIData
     {
         private static int CODE = 0;        // コード
         private static int MEIGARA = 1;     // 銘柄名
@@ -20,11 +20,70 @@ namespace KabuUriKai.Judge
         {
         }
 
+        /// ファイル出力する
+        /// 
+        public void CreateJudgeFile()
+        {
+            /// data配下のすべてのファイルパスを取得する
+            /// 
+            List<string> filePathList = GetAllFilePathOnDataFolder();
+
+            /// 全Codeを取得する
+            /// 
+            List<JudgeUrikaiData> judgeUrikaiDataList = getCodeList(filePathList);
+
+            /// 各Codeに対して、平均値、売買判定をする
+            /// 
+            CalcJudgeUrikai(filePathList, judgeUrikaiDataList);
+
+            /// ファイルに出力する
+            /// 
+            OutputJudgeFile(judgeUrikaiDataList);
+
+        }
+
+        /// ファイル出力する
+        /// 
+        private void OutputJudgeFile(List<JudgeUrikaiData> judgeUrikaiDataList)
+        {
+            if (Directory.Exists( judgeFolderName ))
+            {
+                Directory.CreateDirectory(judgeFolderName);
+            }
+
+            /// ファイルを開く
+            /// 
+            using (StreamWriter writer = new StreamWriter(judgeFolderName + "judgeFile.csv",false, Encoding.GetEncoding(SHIFT_JIS)) )
+            {
+                /// ヘッダを書き込む
+                ///
+                WriteHeader(writer);
+
+                /// データリストを書き込む
+                ///
+                WriteData(writer, judgeUrikaiDataList);
+            }
+
+        }
+
+        private void WriteHeader(StreamWriter writer)
+        {
+            writer.WriteLine("Code,Name,Judge,Avg,Owarine");
+        }
+
+        private void WriteData(StreamWriter writer, List<JudgeUrikaiData> judgeUrikaiDataList)
+        {
+            foreach (var data in judgeUrikaiDataList)
+            {
+                writer.WriteLine("{0},{1},{2},{3},{4}", data.Code, data.Meigara, data.Urikai, data.Avg, data.Owarine );
+            }
+        }
+
         /// <summary>
         /// data配下の全ファイルパス取得
         /// </summary>
         /// <returns>全ファイルパスのリスト(ソート済み)</returns>
-        private List<string> getAllFilePathOnDataFolder()
+        private List<string> GetAllFilePathOnDataFolder()
         {
             // URIdataのgetAllFilePathOnDataFolder()
             var files = URIData.getAllFilePathOnDataFolder();
@@ -50,7 +109,7 @@ namespace KabuUriKai.Judge
             var prefs = 
                 from pline in plines.Skip(HEADERSKIP)
                     let p = pline.Split(',')
-                select new JudgeUrikaiData( p[CODE],p[MEIGARA],double.Parse(p[OWARINE]) );
+                select new JudgeUrikaiData( p[CODE],p[MEIGARA],p[OWARINE] );
 
             // 取得したデータをListへ格納
             foreach (var pref in prefs)
@@ -61,39 +120,14 @@ namespace KabuUriKai.Judge
             return judgeUrikaiDataList;
         }
 
-        /// 各Codeに対して平均値、売買判定を計算する
-        /// 
-
-        /// ファイル出力する
-        /// 
-        public void CreateJudgeFile()
-        {
-            /// data配下のすべてのファイルパスを取得する
-            /// 
-            List<string> filePathList = getAllFilePathOnDataFolder();
-
-            /// 全Codeを取得する
-            /// 
-            List<JudgeUrikaiData> judgeUrikaiDataList =  getCodeList( filePathList );
-
-            /// 各Codeに対して、平均値、売買判定をする
-            /// 
-            CalcJudgeUrikai(filePathList, ref judgeUrikaiDataList);
-
-            /// ファイルに出力する
-            /// 
-
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// 25日移動平均、売買判定を計算し、judgeUrikaiDataListへ代入する
         /// </summary>
         /// <param name="filePathList">株データのファイルパスリスト</param>
         /// <param name="judgeUrikaiDataList">売買判定データリスト</param>
-        private void CalcJudgeUrikai(List<string> filePathList, ref List<JudgeUrikaiData> judgeUrikaiDataList)
+        private void CalcJudgeUrikai(List<string> filePathList, List<JudgeUrikaiData> judgeUrikaiDataList)
         {
-            /// 各株データファイルパスに対し、平均値を計算する
+            /// 各コードに対し、平均値を計算する
             /// 
             foreach( var judgeUrikaiData in judgeUrikaiDataList )
             {
@@ -103,9 +137,9 @@ namespace KabuUriKai.Judge
                 var query =
                         from filePath in filePathList
                         let p = ReadLineOfCode(filePath, code).Split(',')
-                        select double.Parse(p[OWARINE]);
-                List<double> list = query.ToList();
-                judgeUrikaiData.Avg = list.Average();
+                        select p[OWARINE];
+                List<string> list = query.ToList();
+                judgeUrikaiData.Avg = Average( list );
 
 
                 // 売買判定をする(true:買い、false:売り)
@@ -113,6 +147,29 @@ namespace KabuUriKai.Judge
                     judgeUrikaiData.Avg > judgeUrikaiData.Owarine ? true : false ;
             }
             
+        }
+
+        private double Average(List<string> list)
+        {
+            int count = 0;
+            double sum = 0.0;
+
+            foreach (var t in list)
+            {
+                double result = 0.0;
+                if (double.TryParse(t, out result ))
+                {
+                    sum += result;
+                    count++;
+                }
+            }
+
+            if (count == 0)
+            {
+                return 0;
+            }
+
+            return sum / count;
         }
 
         /// <summary>

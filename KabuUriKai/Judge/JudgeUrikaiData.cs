@@ -15,23 +15,23 @@ namespace KabuUriKai.Judge
         /// <summary>
         /// 平均値計算
         /// </summary>
-        public double? Avg { get; set; }
+        public double Avg { get; set; }
 
-        public JudgeUrikaiData( bool? Urikai = null, double? Avg = null ) : base()
+        public JudgeUrikaiData( bool? Urikai = null, double Avg = 0.0 ) : base()
         {
             this.Urikai = Urikai;
             this.Avg = Avg;
         }
 
-        public JudgeUrikaiData(string Code, string Meigara = null, double? Owarine = null)
+        public JudgeUrikaiData(string Code, string Meigara = null, string Owarine = null)
             : base(Code,Meigara,Owarine)
         {
             this.Urikai = null;
-            this.Avg = null;
+            this.Avg = 0.0;
         }
 
-        public JudgeUrikaiData(string Code, string Meigara, double? Owarine = null,
-                                    bool? Urikai = null, double? Avg = null) : base( Code, Meigara, Owarine )
+        public JudgeUrikaiData(string Code, string Meigara, string Owarine = null,
+                                    bool? Urikai = null, double Avg = 0.0) : base( Code, Meigara, Owarine )
         {
             this.Urikai = Urikai;
             this.Avg = Avg;

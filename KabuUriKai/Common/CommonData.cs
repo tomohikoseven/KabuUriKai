@@ -14,9 +14,9 @@ namespace KabuUriKai.Common
         /// <summary>
         /// 終値
         /// </summary>
-        public double? Owarine { get; set; }
+        public string Owarine { get; set; }
 
-        public CommonData( string Code = null, string Meigara = null, double? Owarine = null )
+        public CommonData( string Code = null, string Meigara = null, string Owarine = null )
         {
             this.Code = Code;
             this.Meigara = Meigara;

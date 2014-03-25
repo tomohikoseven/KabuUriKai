@@ -46,6 +46,7 @@ namespace KabuUriKai.Download
         /// </summary>
         private void fileDeleteAll()
         {
+            MyLog.Debug("Start.");
             string[] files = null;
             files = getAllFilePathOnDataFolder();
 
@@ -56,6 +57,7 @@ namespace KabuUriKai.Download
                     File.Delete(file);
                 }
             }
+            MyLog.Debug("End.");
         }
 
 
@@ -65,6 +67,9 @@ namespace KabuUriKai.Download
         /// <param name="date">日付</param>
         private void download( DateTime date )
         {
+            MyLog.Debug("Start.");
+            MyLog.Debug("param[ date = {0} ].", date );
+
             // ------------------
             // 引数の日付の株リストをダウンロードする
             // ------------------
@@ -91,7 +96,7 @@ namespace KabuUriKai.Download
                 MyLog.logger.Error(we);
                 MyLog.logger.Error( uri.ToString() + "のダウンロードに失敗した。" );
             }
-
+            MyLog.Debug("End.");
         }
 
         /// <summary>
@@ -126,6 +131,9 @@ namespace KabuUriKai.Download
         /// <returns>True：平日、False:土日祝祭日</returns>
         private bool IsHeijitsu(DateTime date)
         {
+            MyLog.Debug("Start.");
+            MyLog.Debug("param[ date = {0} ].", date);
+
             var ret = false;
 
             // 平日の場合、true
@@ -157,6 +165,8 @@ namespace KabuUriKai.Download
 
             }
 
+            MyLog.Debug("return = {0}.", ret);
+            MyLog.Debug("End.");
             return ret;
         }
 
