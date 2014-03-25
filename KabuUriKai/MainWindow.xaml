@@ -22,7 +22,7 @@
                       IsReadOnly="True"
                       Margin="10" 
                       Name="kabuDataGrid" 
-                      ItemsSource="{Binding Path=JudgeDatas, NotifyOnTargetUpdated=True}"
+                      ItemsSource="{Binding Path=DataList, NotifyOnTargetUpdated=True}"
                       Sorting="kabuDataGrid_Sorting"
                       TargetUpdated="kabuDataGrid_TargetUpdated"
                       Loaded="kabuDataGrid_Loaded"

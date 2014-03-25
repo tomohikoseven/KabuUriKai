@@ -31,11 +31,12 @@ namespace KabuUriKai.Page
         
         public JudgeDataList()
         {
-            dataList = new ObservableCollection<JudgeData>
-            {
-                new JudgeData { Code = "10", Name="TOPIX", Judge="買い", Avg="10", Owarine = "11" },
-                new JudgeData { Code = "11", Name="TOPIXコア30", Judge="売り", Avg="20", Owarine="25" }
-            };
+            dataList = null;
+            //dataList = new ObservableCollection<JudgeData>
+            //{
+            //    new JudgeData { Code = "10", Name="TOPIX", Judge="買い", Avg="10", Owarine = "11" },
+            //    new JudgeData { Code = "11", Name="TOPIXコア30", Judge="売り", Avg="20", Owarine="25" }
+            //};
         }
 
 
