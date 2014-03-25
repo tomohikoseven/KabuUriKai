@@ -78,8 +78,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="JudgeData.cs" />
+    <Compile Include="JudgeDataList.cs" />
     <Compile Include="JudgeUrikai.cs" />
+    <Compile Include="MyLog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="URIData.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserList.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -99,7 +107,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
