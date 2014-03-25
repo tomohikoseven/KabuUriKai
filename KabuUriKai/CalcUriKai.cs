@@ -7,7 +7,7 @@ namespace KabuUriKai
 {
     public class CalcUriKai : URIData
     {
-        private static readonly string calcFolderName = @"C:\Users\tomohiko\Documents\01_kabu\tool\calc";
+        //private static readonly string calcFolderName = @"C:\Users\tomohiko\Documents\01_kabu\tool\calc";
 
 
         

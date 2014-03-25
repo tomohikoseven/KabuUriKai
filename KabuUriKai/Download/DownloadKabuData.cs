@@ -20,7 +20,7 @@ namespace KabuUriKai.Download
         /// </summary>
         public void downloadKabuList25Days()
         {
-            MyLog.logger.Debug("Start.");
+            MyLog.Debug("Start.");
             List<DateTime> torihikibiList;
 
             /// ----------------
@@ -32,12 +32,13 @@ namespace KabuUriKai.Download
             // -----------------
             // ２５日分の取引日（平日）リストを取得する
             // -----------------
-            torihikibiList = GetTorihikibiList(DateTime.Today);
+            torihikibiList = GetTorihikibiList();
 
             // -----------------
             // ２５日分の株リストを取得する
             // -----------------
             torihikibiList.ForEach(t => { download(t); });
+            MyLog.Debug("End.");
         }
 
         /// <summary>
@@ -68,20 +69,22 @@ namespace KabuUriKai.Download
             // 引数の日付の株リストをダウンロードする
             // ------------------
             var targetDate = date.ToString(FORMAT);
-            var saveFileName = saveFolderName + @"\" + targetDate + ".dat";
-            var uri = new Uri(targetUri + @"/" + targetDate);
+            var saveFileName = saveFolderName + targetDate + ".dat";
+            var uri = new Uri(targetUri + targetDate);
             var client = new WebClient();
 
             // フォルダがなければ、作成する。
             if (!Directory.Exists(saveFolderName))
             {
                 Directory.CreateDirectory( saveFolderName );
+                MyLog.Debug("Create saveFolder = {0}.", saveFolderName);
             }
 
             try
             {
                 // ダウンロードする
                 client.DownloadFile(uri, saveFileName);
+                MyLog.Debug("Download file = {0}", saveFileName);
             }
             catch (WebException we)
             {
@@ -92,13 +95,12 @@ namespace KabuUriKai.Download
         }
 
         /// <summary>
-        /// 今日以前の25日分の取引日を計算し、リストで返却する
+        /// 今日より前の25日分の取引日を計算し、リストで返却する
         /// </summary>
-        /// <param name="today">今日の日付</param>
         /// <returns>今日以前の取引日リスト</returns>
-        private List<DateTime> GetTorihikibiList( DateTime date )
+        private List<DateTime> GetTorihikibiList()
         {
-            var today = DateTime.Today;
+            var today = DateTime.Today.AddDays(-1);
             var count = 25;
             var cnt = 0;
             var dateList = new List<DateTime>();

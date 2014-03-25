@@ -12,6 +12,7 @@ namespace KabuUriKai.Judge
         private static int CODE = 0;        // コード
         private static int MEIGARA = 1;     // 銘柄名
         private static int OWARINE = 7;     // 終値
+        private static string SHIFT_JIS = "Shift_JIS";
 
         private static int HEADERSKIP = 2;  // 株データファイル内ヘッダスキップ数
 
@@ -45,7 +46,7 @@ namespace KabuUriKai.Judge
             var filePath = filePathList.Last();
          
             // ファイル内データ（Code/銘柄名/終値）取得
-            var plines = File.ReadAllLines(filePath, Encoding.GetEncoding("Shift_JIS"));
+            var plines = File.ReadAllLines(filePath, Encoding.GetEncoding(SHIFT_JIS));
             var prefs = 
                 from pline in plines.Skip(HEADERSKIP)
                     let p = pline.Split(',')
@@ -124,7 +125,7 @@ namespace KabuUriKai.Judge
         {
             string line = null;
 
-            using (StreamReader sr = new StreamReader(filePath, Encoding.GetEncoding("Shift_JIS")))
+            using (StreamReader sr = new StreamReader(filePath, Encoding.GetEncoding(SHIFT_JIS)))
             {
                 while (sr.EndOfStream == false)
                 {
