@@ -11,13 +11,13 @@ namespace KabuUriKai.Judge
         /// <summary>
         /// 売買判定値(true:買、false:売)
         /// </summary>
-        public bool? Urikai { get; set; }
+        public string Urikai { get; set; }
         /// <summary>
         /// 平均値計算
         /// </summary>
         public double Avg { get; set; }
 
-        public JudgeUrikaiData( bool? Urikai = null, double Avg = 0.0 ) : base()
+        public JudgeUrikaiData( string Urikai = null, double Avg = 0.0 ) : base()
         {
             this.Urikai = Urikai;
             this.Avg = Avg;
@@ -31,7 +31,7 @@ namespace KabuUriKai.Judge
         }
 
         public JudgeUrikaiData(string Code, string Meigara, string Owarine = null,
-                                    bool? Urikai = null, double Avg = 0.0) : base( Code, Meigara, Owarine )
+                                    string Urikai = null, double Avg = 0.0) : base( Code, Meigara, Owarine )
         {
             this.Urikai = Urikai;
             this.Avg = Avg;

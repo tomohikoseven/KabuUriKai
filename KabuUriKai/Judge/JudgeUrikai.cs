@@ -46,7 +46,7 @@ namespace KabuUriKai.Judge
         /// 
         private void OutputJudgeFile(List<JudgeUrikaiData> judgeUrikaiDataList)
         {
-            if (Directory.Exists( judgeFolderName ))
+            if (!Directory.Exists( judgeFolderName ))
             {
                 Directory.CreateDirectory(judgeFolderName);
             }
@@ -143,10 +143,22 @@ namespace KabuUriKai.Judge
 
 
                 // 売買判定をする(true:買い、false:売り)
-                judgeUrikaiData.Urikai =
-                    judgeUrikaiData.Avg > judgeUrikaiData.Owarine ? true : false ;
+                judgeUrikaiData.Urikai = Judgement(judgeUrikaiData.Avg, judgeUrikaiData.Owarine);
+
             }
             
+        }
+
+        private string Judgement(double avg, string owarine )
+        {
+            double result = 0.0;
+
+            if (double.TryParse(owarine, out result))
+            {
+                return avg > result ? "True" : "False";
+            }
+
+            return "-";
         }
 
         private double Average(List<string> list)
@@ -187,7 +199,8 @@ namespace KabuUriKai.Judge
                 while (sr.EndOfStream == false)
                 {
                     line = sr.ReadLine();
-                    if (line.Contains(code))
+                    var codeOnLine = line.Split(',').ElementAt(0);
+                    if (code == codeOnLine)
                     {
                         return line;
                     }

@@ -20,7 +20,7 @@ namespace KabuUriKai
             string[] files = null;
             if (Directory.Exists(saveFolderName))
             {
-                files = Directory.GetFiles(saveFolderName, "*", SearchOption.AllDirectories);
+                files = Directory.GetFiles(saveFolderName, "*", SearchOption.TopDirectoryOnly);
             }
             return files;
 
