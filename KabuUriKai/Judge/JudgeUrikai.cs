@@ -207,7 +207,8 @@ namespace KabuUriKai.Judge
                 }
             }
 
-            throw new NotImplementedException();
+            // 対象コードが見つからない場合
+            return  code + ",-,-,-,-,-,-,-,-,-";
         }
 
     }

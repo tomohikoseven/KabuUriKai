@@ -26,6 +26,7 @@ namespace KabuUriKai.Download
             /// ----------------
             /// 株リストを削除する
             /// ----------------
+            /// TODO:#8
             fileDeleteAll();
 
             // 25日分の日付リスト
@@ -76,7 +77,6 @@ namespace KabuUriKai.Download
             var targetDate = date.ToString(FORMAT);
             var saveFileName = saveFolderName + targetDate + ".dat";
             var uri = new Uri(targetUri + targetDate);
-            var client = new WebClient();
 
             // フォルダがなければ、作成する。
             if (!Directory.Exists(saveFolderName))
@@ -85,8 +85,10 @@ namespace KabuUriKai.Download
                 MyLog.Debug("Create saveFolder = {0}.", saveFolderName);
             }
 
+            var client = new WebClient();
+
             try
-            {
+            {    
                 // ダウンロードする
                 client.DownloadFile(uri, saveFileName);
                 MyLog.Debug("Download file = {0}", saveFileName);
@@ -94,7 +96,11 @@ namespace KabuUriKai.Download
             catch (WebException we)
             {
                 MyLog.logger.Error(we);
-                MyLog.logger.Error( uri.ToString() + "のダウンロードに失敗した。" );
+                MyLog.logger.Error(uri.ToString() + "のダウンロードに失敗した。");
+            }
+            finally
+            {
+                client.Dispose();
             }
             MyLog.Debug("End.");
         }

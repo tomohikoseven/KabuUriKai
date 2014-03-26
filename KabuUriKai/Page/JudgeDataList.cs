@@ -5,6 +5,7 @@ using System.Text;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.ComponentModel;
+using KabuUriKai.Common;
 
 namespace KabuUriKai.Page
 {
@@ -31,12 +32,7 @@ namespace KabuUriKai.Page
         
         public JudgeDataList()
         {
-            dataList = null;
-            //dataList = new ObservableCollection<JudgeData>
-            //{
-            //    new JudgeData { Code = "10", Name="TOPIX", Judge="買い", Avg="10", Owarine = "11" },
-            //    new JudgeData { Code = "11", Name="TOPIXコア30", Judge="売り", Avg="20", Owarine="25" }
-            //};
+            dataList = new ObservableCollection<JudgeData>() { new JudgeData() };
         }
 
 
@@ -57,12 +53,7 @@ namespace KabuUriKai.Page
             /// 
             try
             {
-                /// メソッド呼び出し（初回）対処
-                if (DataList == null)
-                {
-                    CreateDataList();
-                }
-
+                CreateDataList();
             }
             catch (FileNotFoundException)
             {
@@ -168,7 +159,7 @@ namespace KabuUriKai.Page
             /// 
             try
             {
-                plines = File.ReadAllLines(@"C:\Users\atx01\Documents\GitHub\KabuUrikai\judge\judgeFile.csv", Encoding.GetEncoding("Shift_JIS"));
+                plines = File.ReadAllLines( URIData.judgeFolderName + @"judgeFile.csv", Encoding.GetEncoding("Shift_JIS"));
             }
             catch (FileNotFoundException)
             {

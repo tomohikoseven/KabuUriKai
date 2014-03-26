@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using KabuUriKai.Page;
+using KabuUriKai.Download;
+using KabuUriKai.Judge;
 
 namespace KabuUriKai
 {
@@ -106,7 +108,22 @@ namespace KabuUriKai
             currentSortDirection = currentSortColumn.SortDirection.Value;
         }
 
+        private void btnJudge_Click(object sender, RoutedEventArgs e)
+        {
+            var download = new DownloadKabuData();
+            var judge = new JudgeUrikai();
 
+            /// 株データダウンロード
+            /// 
+            download.downloadKabuList25Days();
 
+            /// 売買判定ファイル作成
+            /// 
+            judge.CreateJudgeFile();
+
+            /// Gridへ表示
+            /// 
+            _page.RefreshProducts();
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace KabuUriKai.Page
     public class PageControl : JudgeDataList
     {
         private int start = 0;
-        private int itemCount = 5;
+        private int itemCount = 20;
         private string sortColumn = "Code";
         private bool ascending = true;
         private int totalItems = 0;
