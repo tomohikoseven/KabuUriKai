@@ -16,11 +16,11 @@ namespace KabuUriKai.Common
         /// </summary>
         public string Owarine { get; set; }
 
-        public CommonData( string Code = null, string Meigara = null, string Owarine = null )
+        public CommonData( string code = null, string meigara = null, string owarine = null )
         {
-            this.Code = Code;
-            this.Meigara = Meigara;
-            this.Owarine = Owarine;
+            this.Code = code;
+            this.Meigara = meigara;
+            this.Owarine = owarine;
         }
 
     }

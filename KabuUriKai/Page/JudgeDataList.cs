@@ -55,7 +55,7 @@ namespace KabuUriKai.Page
             {
                 CreateDataList();
             }
-            catch (FileNotFoundException)
+            catch (IOException)
             {
                 /// 空データ
                 var _dataList = new ObservableCollection<JudgeData>() { new JudgeData() };
@@ -157,15 +157,8 @@ namespace KabuUriKai.Page
 
             /// ローカルから売買判定ファイル(judgeFile.csv)を取得し、DataListへ設定する
             /// 
-            try
-            {
-                plines = File.ReadAllLines( URIData.judgeFolderName + @"judgeFile.csv", Encoding.GetEncoding("Shift_JIS"));
-            }
-            catch (FileNotFoundException)
-            {
-                DataList = null;
-                throw;
-            }
+           
+            plines = File.ReadAllLines( URIData.judgeFolderName + @"judgeFile.csv", Encoding.GetEncoding("Shift_JIS"));
 
             /// ファイル内を引っこ抜く
             /// 

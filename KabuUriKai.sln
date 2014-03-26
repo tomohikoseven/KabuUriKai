@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KabuUriKai", "KabuUriKai\KabuUriKai.csproj", "{B75A5C50-AB1E-4EB4-8072-92BA4C095911}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KabuUriKaiTest", "KabuUriKaiTest\KabuUriKaiTest.csproj", "{7B96C912-EA5D-4509-9B87-00782D8B7542}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQtoCSV", "..\LINQtoCSV\LINQtoCSV\LINQtoCSV.csproj", "{A74FD216-AB64-4805-9059-0C75BBEA78FD}"
 EndProject
 Global
@@ -27,16 +25,6 @@ Global
 		{B75A5C50-AB1E-4EB4-8072-92BA4C095911}.Release|Mixed Platforms.Build.0 = Release|x86
 		{B75A5C50-AB1E-4EB4-8072-92BA4C095911}.Release|x86.ActiveCfg = Release|x86
 		{B75A5C50-AB1E-4EB4-8072-92BA4C095911}.Release|x86.Build.0 = Release|x86
-		{7B96C912-EA5D-4509-9B87-00782D8B7542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B96C912-EA5D-4509-9B87-00782D8B7542}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B96C912-EA5D-4509-9B87-00782D8B7542}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{7B96C912-EA5D-4509-9B87-00782D8B7542}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{7B96C912-EA5D-4509-9B87-00782D8B7542}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7B96C912-EA5D-4509-9B87-00782D8B7542}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B96C912-EA5D-4509-9B87-00782D8B7542}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7B96C912-EA5D-4509-9B87-00782D8B7542}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{7B96C912-EA5D-4509-9B87-00782D8B7542}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{7B96C912-EA5D-4509-9B87-00782D8B7542}.Release|x86.ActiveCfg = Release|Any CPU
 		{A74FD216-AB64-4805-9059-0C75BBEA78FD}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{A74FD216-AB64-4805-9059-0C75BBEA78FD}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{A74FD216-AB64-4805-9059-0C75BBEA78FD}.Debug|Mixed Platforms.Build.0 = Debug|x86
