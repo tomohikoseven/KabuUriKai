@@ -7,6 +7,7 @@ using System.Windows.Data;
 using KabuUriKai.Page;
 using KabuUriKai.Download;
 using KabuUriKai.Judge;
+using KabuUriKai.Log;
 
 namespace KabuUriKai
 {
@@ -110,6 +111,8 @@ namespace KabuUriKai
 
         private void btnJudge_Click(object sender, RoutedEventArgs e)
         {
+            MyLog.Debug("Start.");
+
             var download = new DownloadKabuData();
             var judge = new JudgeUrikai();
 
@@ -124,6 +127,8 @@ namespace KabuUriKai
             /// Gridへ表示
             /// 
             _page.RefreshProducts();
+
+            MyLog.Debug("End.");
         }
     }
 }

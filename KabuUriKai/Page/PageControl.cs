@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using KabuUriKai.Log;
 
 namespace KabuUriKai.Page
 {
@@ -160,11 +161,15 @@ namespace KabuUriKai.Page
         /// </summary>
         public virtual void RefreshProducts()
         {
+            MyLog.Debug( System.Reflection.MethodBase.GetCurrentMethod().Name + " Start.");
+
             DataList = GetJudgeDataList(start, itemCount, sortColumn, ascending, out totalItems);
 
             NotifyPropertyChanged("Start");
             NotifyPropertyChanged("End");
             NotifyPropertyChanged("TotalItems");
+
+            MyLog.Debug(System.Reflection.MethodBase.GetCurrentMethod().Name + " End.");
         }
  
     }

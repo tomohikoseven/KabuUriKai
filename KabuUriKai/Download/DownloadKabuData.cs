@@ -20,7 +20,7 @@ namespace KabuUriKai.Download
         /// </summary>
         public void downloadKabuList25Days()
         {
-            MyLog.Debug("Start.");
+            MyLog.Debug( System.Reflection.MethodBase.GetCurrentMethod().Name + " Start.");
             List<DateTime> torihikibiList;
 
             /// ----------------
@@ -39,7 +39,7 @@ namespace KabuUriKai.Download
             // ２５日分の株リストを取得する
             // -----------------
             torihikibiList.ForEach(t => { download(t); });
-            MyLog.Debug("End.");
+            MyLog.Debug( System.Reflection.MethodBase.GetCurrentMethod().Name + " End.");
         }
 
         /// <summary>

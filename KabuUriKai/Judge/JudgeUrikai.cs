@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-
+using KabuUriKai.Log;
 
 namespace KabuUriKai.Judge
 {
@@ -24,6 +24,8 @@ namespace KabuUriKai.Judge
         /// 
         public void CreateJudgeFile()
         {
+            MyLog.Debug( System.Reflection.MethodBase.GetCurrentMethod().Name + " Start.");
+            
             /// data配下のすべてのファイルパスを取得する
             /// 
             List<string> filePathList = GetAllFilePathOnDataFolder();
@@ -40,6 +42,7 @@ namespace KabuUriKai.Judge
             /// 
             OutputJudgeFile(judgeUrikaiDataList);
 
+            MyLog.Debug( System.Reflection.MethodBase.GetCurrentMethod().Name + " End.");
         }
 
         /// ファイル出力する
